@@ -5,7 +5,7 @@ Authors:     Omer Cem Sevim and Michael Russak
 
 Date:        12/05/2020
 
-Description: This Python script is a modification of Project 2. In our proposal, we outlined that we would implement a more 
+Description: This Python script is a modification of Project 2. In our proposal, we outlined that we would implement a more
 flexible tree displaying program, with flags that specify what information/files are displayed.
 """
 import sys
@@ -47,7 +47,9 @@ def parse_input(flags):
         #Add the help flag to the list.
         elif sys.argv[i] == '--help':
             flags.append('--help')
-
+        #display permissions flag
+        elif sys.argv[i] == '-p':
+            flags.append('-p')
         #check if all the flags are valid.
         else:
             print('ERROR: ' + sys.argv[i] + ' is not a valid flag options, --help for usage info')
@@ -62,8 +64,9 @@ def help_options():
     print('----------------Flag Options----------------')
     print('-d directory             Start listing from the given directory')
     print('-f filename | extension  Only display files matching the name or with the same extension')
+    print('-p                       Display permissions for folders and files in the tree')
     print('--------------------------------------------')
-    
+
 def main():
     if len(sys.argv) == 1:
         call('tree')
@@ -81,7 +84,7 @@ def main():
         s = 'tree'
         for f in flags:
             s+= ' ' + f
-            
+
         call(s, shell=True)
 
 
