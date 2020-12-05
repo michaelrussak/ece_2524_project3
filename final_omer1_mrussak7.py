@@ -34,7 +34,7 @@ def parse_input(flags):
                 print('ERROR: -f flag is used with a file name or file extension. -f [FILENAME | FILEEXTENSION]')
                 return False;
         #Add the help flag to the list.
-        elif sys.argv[i] == '-- help' or '-help' or '-h' or '--h':
+        elif sys.argv[i] == '--help':
             flags.append('--help')
 
 
@@ -55,7 +55,8 @@ def main():
         for f in flags:
             s+= ' ' + f
 
-        if [i for i in ['--help', '-help', '-h', '--h'] if i in flags]:
+        print(flags)
+        if '--help' in flags:
             print('help them')
             return True;
         call(s, shell=True)
