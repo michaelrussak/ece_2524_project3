@@ -12,10 +12,10 @@ def parse_input(flags):
                 flags.append(sys.argv[i+1])
                 i += 1 #skip to the next argument.
             elif i+1 == l:
-                print('ERROR: -d is used with a directory name. -d [DIRECTORY]')
+                print('ERROR: -d is used with a directory name. -d [DIRECTORY], --help for usage info.')
                 return False
             else:
-                print('ERROR: Directory named ' + sys.argv[i+1] + ' does not exist.')
+                print('ERROR: Directory named ' + sys.argv[i+1] + ' does not exist, --help for usage info.')
                 return False
 
         #If the user sends in -f flag, check that the next argument exists.
@@ -31,7 +31,7 @@ def parse_input(flags):
                 flags.append('-P ' + s)
                 i += 1 #skip to the next argument.
             else:
-                print('ERROR: -f flag is used with a file name or file extension. -f [FILENAME | FILEEXTENSION]')
+                print('ERROR: -f flag is used with a file name or file extension. -f [FILENAME | FILEEXTENSION], --help for usage info.')
                 return False;
         #Add the help flag to the list.
         elif sys.argv[i] == '--help':
@@ -41,6 +41,12 @@ def parse_input(flags):
     return True
 
 
+def help_options():
+    print('usage: final_omer1_mrussak7.py [OPTIONAL FLAG, ..., OPTIONAL FLAG]')
+    print('----------------Flag Options----------------')
+    print('-d directory             Start listing from the given directory')
+    print('-f filename | extension  Only display files matching the name or with the same extension')
+    print('--------------------------------------------')
 def main():
     if len(sys.argv) == 1:
         call('tree')
@@ -51,16 +57,15 @@ def main():
         if not check:
             return False;
 
+        if '--help' in flags:
+            help_options()
+            return True;
         s = 'tree'
         for f in flags:
             s+= ' ' + f
 
-        print(flags)
-        if '--help' in flags:
-            print('help them')
-            return True;
+
         call(s, shell=True)
-        print(1)
 
 
 
