@@ -1,3 +1,13 @@
+"""
+File:        final_omer1_mrussak7.py
+
+Authors:     Omer Cem Sevim and Michael Russak
+
+Date:        12/05/2020
+
+Description: This Python script is a modification of Project 2. In our proposal, we outlined that we would implement a more 
+flexible tree displaying program, with flags that specify what information/files are displayed.
+"""
 import sys
 from subprocess import call
 import os
@@ -53,6 +63,7 @@ def help_options():
     print('-d directory             Start listing from the given directory')
     print('-f filename | extension  Only display files matching the name or with the same extension')
     print('--------------------------------------------')
+    
 def main():
     if len(sys.argv) == 1:
         call('tree')
@@ -70,8 +81,7 @@ def main():
         s = 'tree'
         for f in flags:
             s+= ' ' + f
-
-
+            
         call(s, shell=True)
 
 
