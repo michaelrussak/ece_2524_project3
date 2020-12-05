@@ -4,7 +4,8 @@ import os
 
 def parse_input(flags):
     l = len(sys.argv)
-    for i in range(l):
+    i = 1
+    while i < l:
         #If the user sends in -d flag, check that the next argument is a valid directory and add it to the list of arguments,
         #If its not a valid directory notify the user and return false.
         if sys.argv[i] == '-d':
@@ -37,6 +38,11 @@ def parse_input(flags):
         elif sys.argv[i] == '--help':
             flags.append('--help')
 
+        #check if all the flags are valid.
+        else:
+            print('ERROR: ' + sys.argv[i] + ' is not a valid flag options, --help for usage info')
+            return False;
+        i += 1
 
     return True
 
@@ -50,6 +56,7 @@ def help_options():
 def main():
     if len(sys.argv) == 1:
         call('tree')
+        return True
     else:
         flags = []
         check = parse_input(flags)
